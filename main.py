@@ -34,6 +34,7 @@ class FRUIT:
     
     def draw_fruit(self):
         fruit_rect = pygame.Rect(int(self.pos.x * cell_size),int(self.pos.y * cell_size),cell_size,cell_size)
+        # screen.blit(apple,fruit_rect)
         pygame.draw.rect(screen,(126,166,114),fruit_rect)
 
     def randomize(self):
@@ -63,7 +64,7 @@ class MAIN:
     def check_fail(self):
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
             self.game_over()
-        for block in self.snake.body[1:]
+        for block in self.snake.body[1:]:
             if block == self.snake.body[0]:
                 self.game_over()
 
@@ -77,6 +78,7 @@ screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_si
 pygame.display.set_caption('Snake')
 Green = (182, 226, 161)
 FPS = 120
+# apple = pygame.image.load('Assest/apple.png').convert_alpha()
 
 fruit = FRUIT()
 snake = SNAKE()
@@ -100,10 +102,10 @@ while run:
             if event.key == pygame.K_UP:
                 if main_game.snake.direction.y != 1:
                     main_game.snake.direction = Vector2(0,-1)
-            if event.key == pygame.RIGHT:
+            if event.key == pygame.K_RIGHT:
                 if main_game.snake.direction.x != -1:
                     main_game.snake.direction = Vector2(1,0)
-            if event.key == pygame.DOWN:
+            if event.key == pygame.K_DOWN:
                 if main_game.snake.direction.y != -1:
                     main_game.snake.direction = Vector2(0,-1)
             if event.key == pygame.K_LEFT:
